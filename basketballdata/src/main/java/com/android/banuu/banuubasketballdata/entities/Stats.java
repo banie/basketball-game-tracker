@@ -1,8 +1,5 @@
 package com.android.banuu.banuubasketballdata.entities;
 
-/**
- * Created by bsetijoso on 15-12-26.
- */
 public class Stats {
   private int gamePlayeds;
   private int fieldGoalAttempts;

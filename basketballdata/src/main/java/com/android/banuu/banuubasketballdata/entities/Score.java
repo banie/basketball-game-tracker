@@ -1,8 +1,5 @@
 package com.android.banuu.banuubasketballdata.entities;
 
-/**
- * Created by bsetijoso on 15-12-28.
- */
 public class Score {
   private Team firstTeam;
   private Team secondTeam;

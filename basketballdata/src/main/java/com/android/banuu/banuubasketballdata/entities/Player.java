@@ -1,8 +1,5 @@
 package com.android.banuu.banuubasketballdata.entities;
 
-/**
- * Created by bsetijoso on 15-12-26.
- */
 public class Player {
 
   private String firstName;

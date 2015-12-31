@@ -3,9 +3,6 @@ package com.android.banuu.banuubasketballdata.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by bsetijoso on 15-12-26.
- */
 public class Team {
   private int teamId;
   private String name;
