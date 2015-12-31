@@ -1,21 +1,21 @@
 package com.android.banuu.banuubasketballdata.entities;
 
 public class Score {
-  private Team firstTeam;
+  private Team team;
   private Team secondTeam;
-  private int firstTeamScore;
+  private int points;
   private int secondTeamScore;
 
   public Score(Team teamA, Team teamB) {
-    firstTeam = teamA;
+    team = teamA;
     secondTeam = teamB;
-    firstTeamScore = 0;
+    points = 0;
     secondTeamScore = 0;
   }
 
   public void increaseScore(Team team) {
-    if(firstTeam == team) {
-      firstTeamScore++;
+    if(this.team == team) {
+      points++;
     } else {
       secondTeamScore++;
     }
