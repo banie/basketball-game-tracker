@@ -1,4 +1,4 @@
-package com.android.banuu.basketballstattracker.main;
+package com.android.banuu.basketballstattracker.main.view;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
