@@ -7,10 +7,12 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.android.banuu.basketballstattracker.R;
@@ -27,6 +29,10 @@ public class MainActivity extends AppCompatActivity
   DrawerLayout drawer;
   @Bind(R.id.nav_view)
   NavigationView navigationView;
+  @Bind(R.id.recyclerview)
+  RecyclerView recyclerView;
+  @Bind(R.id.empty_placeholder)
+  LinearLayout emptyPlaceholder;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +58,9 @@ public class MainActivity extends AppCompatActivity
     toggle.syncState();
 
     navigationView.setNavigationItemSelectedListener(this);
+
+    recyclerView.setVisibility(View.GONE);
+    emptyPlaceholder.setVisibility(View.VISIBLE);
   }
 
   @Override
