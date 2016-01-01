@@ -2,37 +2,27 @@ package com.android.banuu.basketballstattracker.main.view;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.LinearLayout;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.android.banuu.basketballstattracker.R;
-import com.github.clans.fab.FloatingActionButton;
+import com.android.banuu.basketballstattracker.Util.FragmentUtil;
 
 public class MainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener {
 
   @Bind(R.id.toolbar)
   Toolbar toolbar;
-  @Bind(R.id.main_fab)
-  FloatingActionButton fab;
   @Bind(R.id.drawer_layout)
   DrawerLayout drawer;
   @Bind(R.id.nav_view)
   NavigationView navigationView;
-  @Bind(R.id.recyclerview)
-  RecyclerView recyclerView;
-  @Bind(R.id.empty_placeholder)
-  LinearLayout emptyPlaceholder;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +32,6 @@ public class MainActivity extends AppCompatActivity
 
     setSupportActionBar(toolbar);
 
-    fab.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-            .setAction("Action", null)
-            .show();
-      }
-    });
-
     ActionBarDrawerToggle toggle =
         new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open,
             R.string.navigation_drawer_close);
@@ -59,8 +40,7 @@ public class MainActivity extends AppCompatActivity
 
     navigationView.setNavigationItemSelectedListener(this);
 
-    recyclerView.setVisibility(View.GONE);
-    emptyPlaceholder.setVisibility(View.VISIBLE);
+    FragmentUtil.showFragment(getFragmentManager(), R.id.main_frame, new GamesViewFragment(), null);
   }
 
   @Override
