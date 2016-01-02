@@ -1,6 +1,8 @@
 package com.android.banuu.basketballstattracker.main.presenter;
 
+import android.content.Context;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -20,8 +22,12 @@ public class GamesViewPresenter implements Presenter {
   @Bind(R.id.main_fab)
   FloatingActionButton fab;
 
-  public GamesViewPresenter(View rootView, LoaderManagerProvider loaderManagerProvider) {
+  public GamesViewPresenter(Context context, View rootView, LoaderManagerProvider
+      loaderManagerProvider) {
     ButterKnife.bind(this, rootView);
+
+    recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
     recyclerView.setVisibility(View.GONE);
     emptyPlaceholder.setVisibility(View.VISIBLE);
 
