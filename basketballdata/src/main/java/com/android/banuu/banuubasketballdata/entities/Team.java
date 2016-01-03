@@ -13,27 +13,27 @@ public class Team {
     players = new ArrayList<>();
   }
 
-  public final int getTeamId() {
+  public int getTeamId() {
     return teamId;
   }
 
-  public final void setTeamId(int teamId) {
+  public void setTeamId(int teamId) {
     this.teamId = teamId;
   }
 
-  public final String getName() {
+  public String getName() {
     return name;
   }
 
-  public final void setName(String name) {
+  public void setName(String name) {
     this.name = name;
   }
 
-  public final List<Player> getPlayers() {
+  public List<Player> getPlayers() {
     return players;
   }
 
-  public final void setPlayers(List<Player> players) {
+  public void setPlayers(List<Player> players) {
     this.players = players;
   }
 }

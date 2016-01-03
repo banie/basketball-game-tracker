@@ -1,7 +1,7 @@
 package com.android.banuu.banuubasketballdata.entities;
 
 import android.util.Pair;
-import com.android.banuu.banuubasketballdata.entities.stats.Stat;
+import com.android.banuu.banuubasketballdata.entities.stats.base.Stat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,5 +30,9 @@ public final class Game {
     teamStats.keySet().toArray(teams);
 
     return new Pair<>(new Pair<>(teams[0], 0), new Pair<>(teams[1], 0));
+  }
+
+  public ArrayList<Stat> getStats(Team team) {
+    return teamStats.get(team);
   }
 }
