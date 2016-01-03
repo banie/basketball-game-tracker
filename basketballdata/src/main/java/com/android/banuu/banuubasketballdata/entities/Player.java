@@ -1,6 +1,6 @@
 package com.android.banuu.banuubasketballdata.entities;
 
-public class Player {
+public final class Player {
 
   private String firstName;
   private String lastName;

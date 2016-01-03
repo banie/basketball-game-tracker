@@ -4,7 +4,7 @@ import com.android.banuu.banuubasketballdata.entities.Player;
 import com.android.banuu.banuubasketballdata.entities.stats.base.Stat;
 import com.android.banuu.banuubasketballdata.entities.stats.base.StatType;
 
-public class FieldThrowAttempt extends Stat {
+public final class FieldThrowAttempt extends Stat {
   public FieldThrowAttempt(long creationTime, Player player) {
     super(creationTime, player);
   }
