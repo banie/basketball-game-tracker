@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.android.banuu.basketballstattracker.R;
-import com.android.banuu.basketballstattracker.Util.FragmentUtil;
+import com.android.banuu.basketballstattracker.util.FragmentUtil;
 
 public class MainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener {

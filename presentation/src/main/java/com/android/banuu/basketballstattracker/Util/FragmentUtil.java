@@ -1,4 +1,4 @@
-package com.android.banuu.basketballstattracker.Util;
+package com.android.banuu.basketballstattracker.util;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
