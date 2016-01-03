@@ -10,4 +10,29 @@
   <string name="you_have_no_game_saved">You have no game saved.</string>
   <string name="add_button_desc">Click on the add button
     below to start tracking one.</string>
+
+  <!--Stats Label and shortname-->
+  <string name="assist">Assist</string>
+  <string name="block">Block</string>
+  <string name="defensive_rebound">Defensive Rebound</string>
+  <string name="offensive_rebound">Offensive Rebound</string>
+  <string name="field_goal_attempt">Field Goal Attempt</string>
+  <string name="field_goal_made">Field Goal Made</string>
+  <string name="field_throw_attempt">Field Goal Attempt</string>
+  <string name="field_throw_made">Field Goal Made</string>
+  <string name="foul">Foul</string>
+  <string name="steal">Steal</string>
+  <string name="turnover">Turnover</string>
+  <string name="A">Assist</string>
+  <string name="B">Block</string>
+  <string name="DR">Defensive Rebound</string>
+  <string name="OR">Offensive Rebound</string>
+  <string name="FGA">Field Goal Attempt</string>
+  <string name="FGM">Field Goal Made</string>
+  <string name="FTA">Field Goal Attempt</string>
+  <string name="FTM">Field Goal Made</string>
+  <string name="F">Foul</string>
+  <string name="S">Steal</string>
+  <string name="TO">Turnover</string>
+
 </resources>
