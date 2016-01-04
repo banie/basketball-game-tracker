@@ -18,7 +18,7 @@ public class GamesViewFragment extends Fragment implements LoaderManagerProvider
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    View fragmentView = inflater.inflate(R.layout.main_fragment, container, false);
+    View fragmentView = inflater.inflate(R.layout.tracked_games_view, container, false);
     gamesViewPresenter = new GamesViewPresenter(activity, fragmentView, this);
 
     return fragmentView;
