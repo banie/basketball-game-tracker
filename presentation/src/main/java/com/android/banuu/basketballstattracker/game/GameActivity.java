@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import com.android.banuu.basketballstattracker.R;
 import com.github.clans.fab.FloatingActionButton;
 
@@ -27,30 +29,27 @@ public class GameActivity extends AppCompatActivity {
    * may be best to switch to a
    * {@link android.support.v4.app.FragmentStatePagerAdapter}.
    */
-  private SectionsPagerAdapter mSectionsPagerAdapter;
+  private SectionsPagerAdapter sectionsPagerAdapter;
 
-  /**
-   * The {@link ViewPager} that will host the section contents.
-   */
-  private ViewPager mViewPager;
+  @Bind(R.id.toolbar)
+  Toolbar toolbar;
+  @Bind(R.id.container)
+  ViewPager viewPager;
+  @Bind(R.id.play_pause_fab)
+  FloatingActionButton playPauseFab;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_game);
+    ButterKnife.bind(this);
 
-    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-    // Create the adapter that will return a fragment for each of the three
-    // primary sections of the activity.
-    mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
     // Set up the ViewPager with the sections adapter.
-    mViewPager = (ViewPager) findViewById(R.id.container);
-    mViewPager.setAdapter(mSectionsPagerAdapter);
+    viewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager()));
 
-    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.play_pause_fab);
-    fab.setOnClickListener(new View.OnClickListener() {
+    playPauseFab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
