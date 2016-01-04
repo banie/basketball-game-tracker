@@ -34,5 +34,7 @@
   <string name="F">Foul</string>
   <string name="S">Steal</string>
   <string name="TO">Turnover</string>
+  <string name="title_activity_game">GameActivity</string>
+  <string name="section_format">Hello World from section: %1$d</string>
 
 </resources>
