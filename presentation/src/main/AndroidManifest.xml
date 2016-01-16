@@ -2,6 +2,7 @@
 <manifest package="com.android.banuu.basketballstattracker"
   xmlns:android="http://schemas.android.com/apk/res/android">
 
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
   <application
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
@@ -21,7 +22,7 @@
     <activity
       android:name=".game.view.GameActivity"
       android:label="@string/title_activity_game"
-      android:theme="@style/AppTheme.NoActionBar"></activity>
+      android:theme="@style/AppTheme.NoActionBar"/>
   </application>
 
 </manifest>

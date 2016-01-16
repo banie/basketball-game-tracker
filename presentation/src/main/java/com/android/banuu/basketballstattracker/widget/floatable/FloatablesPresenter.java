@@ -35,7 +35,7 @@ import android.view.WindowManager;
 import java.util.ArrayList;
 import java.util.List;
 
-final class FloatablesPresenter implements FloatingMotionListener {
+public final class FloatablesPresenter implements FloatingMotionListener {
   private Context context;
   private LandingLayout trashView;
   private List<FloatingLayout> bubbles = new ArrayList<>();
@@ -130,7 +130,7 @@ final class FloatablesPresenter implements FloatingMotionListener {
 
   private WindowManager getWindowManager() {
     if (windowManager == null) {
-      windowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+      windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
     }
     return windowManager;
   }
@@ -162,12 +162,10 @@ final class FloatablesPresenter implements FloatingMotionListener {
   }
 
   private WindowManager.LayoutParams buildLayoutParamsForBubble(int x, int y) {
-    WindowManager.LayoutParams params = new WindowManager.LayoutParams(
-        WindowManager.LayoutParams.WRAP_CONTENT,
-        WindowManager.LayoutParams.WRAP_CONTENT,
-        WindowManager.LayoutParams.TYPE_PHONE,
-        WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-        PixelFormat.TRANSPARENT);
+    WindowManager.LayoutParams params =
+        new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT,
+            WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.TYPE_PHONE,
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, PixelFormat.TRANSPARENT);
     params.gravity = Gravity.TOP | Gravity.START;
     params.x = x;
     params.y = y;
@@ -177,12 +175,10 @@ final class FloatablesPresenter implements FloatingMotionListener {
   private WindowManager.LayoutParams buildLayoutParamsForTrash() {
     int x = 0;
     int y = 0;
-    WindowManager.LayoutParams params = new WindowManager.LayoutParams(
-        WindowManager.LayoutParams.MATCH_PARENT,
-        WindowManager.LayoutParams.MATCH_PARENT,
-        WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
-        WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-        PixelFormat.TRANSPARENT);
+    WindowManager.LayoutParams params =
+        new WindowManager.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, PixelFormat.TRANSPARENT);
     params.x = x;
     params.y = y;
     return params;

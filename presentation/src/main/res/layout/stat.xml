@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.clans.fab.FloatingActionButton
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/button1"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_gravity="bottom|center_horizontal"
+  android:layout_margin="@dimen/fab_margin"
+  android:text="FM"
+  app:fab_colorNormal="@color/carrot"
+  app:fab_colorPressed="@color/pumpkin"
+  app:fab_colorRipple="#66FFFFFF"
+  app:fab_hideAnimation="@anim/fab_scale_down"
+  app:fab_shadowColor="#40000000"
+  app:fab_showAnimation="@anim/fab_scale_up"
+  app:fab_size="mini" />

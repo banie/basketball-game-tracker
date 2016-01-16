@@ -45,110 +45,35 @@
     android:gravity="top|center_horizontal"
     android:orientation="vertical">
 
-    <com.github.clans.fab.FloatingActionButton
-      android:id="@+id/button1"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="bottom|center_horizontal"
-      android:layout_margin="@dimen/fab_margin"
-      android:src="@mipmap/ic_add_white"
-      app:fab_colorNormal="@color/turquoise"
-      app:fab_colorPressed="@color/greensea"
-      app:fab_colorRipple="#66FFFFFF"
-      app:fab_hideAnimation="@anim/fab_scale_down"
-      app:fab_shadowColor="#40000000"
-      app:fab_showAnimation="@anim/fab_scale_up"
-      app:fab_size="normal" />
+    <include
+      android:id="@+id/fa"
+      layout="@layout/stat"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
 
-    <com.github.clans.fab.FloatingActionButton
-      android:id="@+id/button2"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="bottom|center_horizontal"
-      android:layout_margin="@dimen/fab_margin"
-      android:src="@mipmap/ic_add_white"
-      app:fab_colorNormal="@color/turquoise"
-      app:fab_colorPressed="@color/greensea"
-      app:fab_colorRipple="#66FFFFFF"
-      app:fab_hideAnimation="@anim/fab_scale_down"
-      app:fab_shadowColor="#40000000"
-      app:fab_showAnimation="@anim/fab_scale_up"
-      app:fab_size="normal" />
+    <include
+      android:id="@+id/fm"
+      layout="@layout/stat"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
 
-    <com.github.clans.fab.FloatingActionButton
-      android:id="@+id/button3"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="bottom|center_horizontal"
-      android:layout_margin="@dimen/fab_margin"
-      android:src="@mipmap/ic_add_white"
-      app:fab_colorNormal="@color/turquoise"
-      app:fab_colorPressed="@color/greensea"
-      app:fab_colorRipple="#66FFFFFF"
-      app:fab_hideAnimation="@anim/fab_scale_down"
-      app:fab_shadowColor="#40000000"
-      app:fab_showAnimation="@anim/fab_scale_up"
-      app:fab_size="normal" />
+    <include
+      android:id="@+id/o"
+      layout="@layout/stat"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
 
-    <com.github.clans.fab.FloatingActionButton
-      android:id="@+id/button4"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="bottom|center_horizontal"
-      android:layout_margin="@dimen/fab_margin"
-      android:src="@mipmap/ic_add_white"
-      app:fab_colorNormal="@color/turquoise"
-      app:fab_colorPressed="@color/greensea"
-      app:fab_colorRipple="#66FFFFFF"
-      app:fab_hideAnimation="@anim/fab_scale_down"
-      app:fab_shadowColor="#40000000"
-      app:fab_showAnimation="@anim/fab_scale_up"
-      app:fab_size="normal" />
+    <include
+      android:id="@+id/d"
+      layout="@layout/stat"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
 
-    <com.github.clans.fab.FloatingActionButton
-      android:id="@+id/button5"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="bottom|center_horizontal"
-      android:layout_margin="@dimen/fab_margin"
-      android:src="@mipmap/ic_add_white"
-      app:fab_colorNormal="@color/turquoise"
-      app:fab_colorPressed="@color/greensea"
-      app:fab_colorRipple="#66FFFFFF"
-      app:fab_hideAnimation="@anim/fab_scale_down"
-      app:fab_shadowColor="#40000000"
-      app:fab_showAnimation="@anim/fab_scale_up"
-      app:fab_size="normal" />
-
-    <com.github.clans.fab.FloatingActionButton
-      android:id="@+id/button6"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="bottom|center_horizontal"
-      android:layout_margin="@dimen/fab_margin"
-      android:src="@mipmap/ic_add_white"
-      app:fab_colorNormal="@color/turquoise"
-      app:fab_colorPressed="@color/greensea"
-      app:fab_colorRipple="#66FFFFFF"
-      app:fab_hideAnimation="@anim/fab_scale_down"
-      app:fab_shadowColor="#40000000"
-      app:fab_showAnimation="@anim/fab_scale_up"
-      app:fab_size="normal" />
-
-    <com.github.clans.fab.FloatingActionButton
-      android:id="@+id/button7"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="bottom|center_horizontal"
-      android:layout_margin="@dimen/fab_margin"
-      android:src="@mipmap/ic_add_white"
-      app:fab_colorNormal="@color/turquoise"
-      app:fab_colorPressed="@color/greensea"
-      app:fab_colorRipple="#66FFFFFF"
-      app:fab_hideAnimation="@anim/fab_scale_down"
-      app:fab_shadowColor="#40000000"
-      app:fab_showAnimation="@anim/fab_scale_up"
-      app:fab_size="normal" />
+    <include
+      android:id="@+id/s"
+      layout="@layout/stat"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
 
   </LinearLayout>
 

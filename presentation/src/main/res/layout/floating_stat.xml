@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.banuu.basketballstattracker.widget.floatable.FloatingLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:clipChildren="false"
+  android:clipToPadding="false">
+
+  <!--<include-->
+    <!--layout="@layout/stat"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content" />-->
+
+  <ImageView
+    android:id="@+id/main_img_no_data"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="21dp"
+    android:src="@mipmap/ic_face_black"
+    android:tint="@color/wetasphalt" />
+
+</com.android.banuu.basketballstattracker.widget.floatable.FloatingLayout>

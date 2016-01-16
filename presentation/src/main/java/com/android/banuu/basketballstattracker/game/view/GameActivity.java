@@ -22,6 +22,8 @@ public class GameActivity extends AppCompatActivity {
   @Bind(R.id.play_pause_fab)
   FloatingActionButton playPauseFab;
 
+  private GameFragment gameFragment;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -30,7 +32,8 @@ public class GameActivity extends AppCompatActivity {
 
     setSupportActionBar(toolbar);
 
-    FragmentUtil.showFragment(getFragmentManager(), R.id.game_container, new GameFragment(),
+    gameFragment = new GameFragment();
+    FragmentUtil.showFragment(getFragmentManager(), R.id.game_container, gameFragment,
         GAME_FRAGMENT_TAG);
 
     playPauseFab.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +44,13 @@ public class GameActivity extends AppCompatActivity {
             .show();
       }
     });
+  }
+
+  @Override
+  public void onWindowFocusChanged(boolean hasFocus) {
+    super.onWindowFocusChanged(hasFocus);
+
+    gameFragment.onWindowFocusChanged(hasFocus);
   }
 
   @Override
