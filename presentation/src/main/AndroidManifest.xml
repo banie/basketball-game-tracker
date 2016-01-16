@@ -19,7 +19,7 @@
       </intent-filter>
     </activity>
     <activity
-      android:name=".game.GameActivity"
+      android:name=".game.view.GameActivity"
       android:label="@string/title_activity_game"
       android:theme="@style/AppTheme.NoActionBar"></activity>
   </application>

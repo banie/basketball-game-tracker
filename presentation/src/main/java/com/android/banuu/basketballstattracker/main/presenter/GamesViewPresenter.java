@@ -11,7 +11,7 @@ import butterknife.ButterKnife;
 import com.android.banuu.basketballstattracker.R;
 import com.android.banuu.basketballstattracker.base.LoaderManagerProvider;
 import com.android.banuu.basketballstattracker.base.Presenter;
-import com.android.banuu.basketballstattracker.game.GameActivity;
+import com.android.banuu.basketballstattracker.game.view.GameActivity;
 import com.github.clans.fab.FloatingActionButton;
 
 public class GamesViewPresenter implements Presenter {

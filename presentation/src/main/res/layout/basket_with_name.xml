@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
+
+  <TextView
+    android:id="@+id/player_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top|center_horizontal"
+    android:ellipsize="end"
+    android:gravity="top|center_horizontal"
+    android:lines="1"
+    android:text="PlayerA"
+    android:textColor="@color/colorPrimary"
+    android:textSize="14sp" />
+
+  <ImageView
+    android:id="@+id/basket_pic"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/player_name"
+    android:layout_gravity="center"
+    android:layout_marginBottom="5dp"
+    android:contentDescription="@null"
+    android:src="@mipmap/basket" />
+
+  <TextView
+    android:id="@+id/stats_textview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_below="@id/basket_pic"
+    android:ellipsize="end"
+    android:gravity="center_horizontal"
+    android:lines="2"
+    android:text="FA, FA, FM, T, D, O, D, D"
+    android:textColor="@color/colorPrimary"
+    android:textSize="10sp" />
+
+</RelativeLayout>
