@@ -1,15 +1,15 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
-  android:layout_height="match_parent">
+  android:layout_height="match_parent"
+  android:orientation="horizontal">
 
   <LinearLayout
     android:layout_width="50dp"
     android:layout_height="match_parent"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_marginTop="20dp"
-    android:gravity="top|center_horizontal"
+    android:layout_marginLeft="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="15dp"
+    android:gravity="top"
     android:orientation="vertical">
 
     <include
@@ -37,53 +37,26 @@
       android:layout_marginBottom="20dp" />
   </LinearLayout>
 
-  <LinearLayout
-    android:layout_width="match_parent"
+  <FrameLayout
+    android:layout_width="0dp"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:layout_marginTop="20dp"
-    android:gravity="top|center_horizontal"
-    android:orientation="vertical">
+    android:layout_weight="1">
 
     <include
-      android:id="@+id/fa"
-      layout="@layout/stat"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content" />
-
-    <include
-      android:id="@+id/fm"
-      layout="@layout/stat"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content" />
-
-    <include
-      android:id="@+id/o"
-      layout="@layout/stat"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content" />
-
-    <include
-      android:id="@+id/d"
-      layout="@layout/stat"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content" />
-
-    <include
-      android:id="@+id/s"
-      layout="@layout/stat"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content" />
-
-  </LinearLayout>
+      layout="@layout/stats_layout"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="top|center_horizontal"
+      android:layout_marginTop="40dp" />
+  </FrameLayout>
 
   <LinearLayout
     android:layout_width="50dp"
     android:layout_height="match_parent"
-    android:layout_alignParentEnd="true"
-    android:layout_alignParentRight="true"
-    android:layout_marginTop="20dp"
-    android:gravity="top|center_horizontal"
+    android:layout_marginEnd="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="15dp"
+    android:gravity="top"
     android:orientation="vertical">
 
     <include
@@ -112,4 +85,4 @@
 
   </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

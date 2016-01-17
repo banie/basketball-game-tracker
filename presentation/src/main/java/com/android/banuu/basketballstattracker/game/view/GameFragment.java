@@ -14,7 +14,7 @@ import com.android.banuu.basketballstattracker.widget.floatable.FlyingLayout;
 
 public class GameFragment extends Fragment implements IOnFocusListenable {
 
-  @Bind(R.id.fa)
+  @Bind(R.id.fga_stat)
   TextView fmStat;
 
   @Override
