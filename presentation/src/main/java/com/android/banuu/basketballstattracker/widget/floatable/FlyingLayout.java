@@ -38,7 +38,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import com.android.banuu.basketballstattracker.R;
 
-public final class FloatingLayout extends FrameLayout {
+public final class FlyingLayout extends FrameLayout {
   private WindowManager.LayoutParams params;
   private WindowManager windowManager;
 
@@ -46,7 +46,7 @@ public final class FloatingLayout extends FrameLayout {
   private float initialTouchY;
   private int initialX;
   private int initialY;
-  private FloatingMotionListener floatingMotionListener;
+  private AirTrafficControl airTrafficControl;
   private OnBubbleRemoveListener onBubbleRemoveListener;
   private OnBubbleClickListener onBubbleClickListener;
   private static final int TOUCH_TIME_THRESHOLD = 150;
@@ -55,21 +55,21 @@ public final class FloatingLayout extends FrameLayout {
   private int width;
   private boolean shouldStickToWall = true;
 
-  public FloatingLayout(Context context) {
+  public FlyingLayout(Context context) {
     super(context);
     animator = new MoveAnimator();
     windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
     initializeView();
   }
 
-  public FloatingLayout(Context context, AttributeSet attrs) {
+  public FlyingLayout(Context context, AttributeSet attrs) {
     super(context, attrs);
     animator = new MoveAnimator();
     windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
     initializeView();
   }
 
-  public FloatingLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+  public FlyingLayout(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     animator = new MoveAnimator();
     windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -88,8 +88,8 @@ public final class FloatingLayout extends FrameLayout {
     return this.params;
   }
 
-  public void setFloatingMotionListener(FloatingMotionListener listener) {
-    floatingMotionListener = listener;
+  public void setAirTrafficControl(AirTrafficControl listener) {
+    airTrafficControl = listener;
   }
 
   public void setOnBubbleRemoveListener(OnBubbleRemoveListener listener) {
@@ -136,14 +136,14 @@ public final class FloatingLayout extends FrameLayout {
           params.x = x;
           params.y = y;
           windowManager.updateViewLayout(this, params);
-          if (floatingMotionListener != null) {
-            floatingMotionListener.onDraggablePositionChanged(this, x, y);
+          if (airTrafficControl != null) {
+            airTrafficControl.onDraggablePositionChanged(this, x, y);
           }
           break;
         case MotionEvent.ACTION_UP:
           goToWall();
-          if (floatingMotionListener != null) {
-            floatingMotionListener.onDraggableMotionUp(this);
+          if (airTrafficControl != null) {
+            airTrafficControl.onDraggableMotionUp(this);
             playAnimationClickUp();
           }
           if (System.currentTimeMillis() - lastTouchDown < TOUCH_TIME_THRESHOLD) {
@@ -194,11 +194,11 @@ public final class FloatingLayout extends FrameLayout {
   }
 
   public interface OnBubbleRemoveListener {
-    void onBubbleRemoved(FloatingLayout bubble);
+    void onBubbleRemoved(FlyingLayout bubble);
   }
 
   public interface OnBubbleClickListener {
-    void onBubbleClick(FloatingLayout bubble);
+    void onBubbleClick(FlyingLayout bubble);
   }
 
   public void goToWall() {

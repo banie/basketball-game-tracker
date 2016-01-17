@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.android.banuu.basketballstattracker.R;
-import com.android.banuu.basketballstattracker.widget.floatable.FloatablesPresenter;
-import com.android.banuu.basketballstattracker.widget.floatable.FloatingLayout;
+import com.android.banuu.basketballstattracker.widget.floatable.FlyingItemsPresenter;
+import com.android.banuu.basketballstattracker.widget.floatable.FlyingLayout;
 import com.github.clans.fab.FloatingActionButton;
 
 public class GameFragment extends Fragment implements IOnFocusListenable {
@@ -28,11 +28,11 @@ public class GameFragment extends Fragment implements IOnFocusListenable {
 
   @Override
   public void onWindowFocusChanged(boolean hasFocus) {
-    FloatingLayout floatingLayout =
-        (FloatingLayout) LayoutInflater.from(getActivity()).inflate(R.layout.floating_stat, null);
-    FloatablesPresenter floatablesPresenter = new FloatablesPresenter(getActivity());
+    FlyingLayout flyingLayout =
+        (FlyingLayout) LayoutInflater.from(getActivity()).inflate(R.layout.flying_stat, null);
+    FlyingItemsPresenter flyingItemsPresenter = new FlyingItemsPresenter(getActivity());
     int[] location = new int[2];
     faButton.getLocationOnScreen(location);
-    floatablesPresenter.addFloatable(floatingLayout, location[0], location[1]);
+    flyingItemsPresenter.addFlyier(flyingLayout, location[0], location[1]);
   }
 }

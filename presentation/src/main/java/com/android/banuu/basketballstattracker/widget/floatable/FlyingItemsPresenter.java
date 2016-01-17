@@ -35,18 +35,18 @@ import android.view.WindowManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class FloatablesPresenter implements FloatingMotionListener {
+public final class FlyingItemsPresenter implements AirTrafficControl {
   private Context context;
   private LandingLayout trashView;
-  private List<FloatingLayout> bubbles = new ArrayList<>();
+  private List<FlyingLayout> bubbles = new ArrayList<>();
   private LandingLayout bubblesTrash;
   private WindowManager windowManager;
 
-  public FloatablesPresenter(Context contextParam) {
+  public FlyingItemsPresenter(Context contextParam) {
     context = contextParam;
   }
 
-  public void onDraggablePositionChanged(FloatingLayout bubble, int x, int y) {
+  public void onDraggablePositionChanged(FlyingLayout bubble, int x, int y) {
     if (trashView != null) {
       trashView.setVisibility(View.VISIBLE);
       if (checkIfBubbleIsOverTrash(bubble)) {
@@ -59,7 +59,7 @@ public final class FloatablesPresenter implements FloatingMotionListener {
     }
   }
 
-  private void applyTrashMagnetismToBubble(FloatingLayout bubble) {
+  private void applyTrashMagnetismToBubble(FlyingLayout bubble) {
     View trashContentView = getTrashContent();
     int trashCenterX = (trashContentView.getLeft() + (trashContentView.getMeasuredWidth() / 2));
     int trashCenterY = (trashContentView.getTop() + (trashContentView.getMeasuredHeight() / 2));
@@ -70,7 +70,7 @@ public final class FloatablesPresenter implements FloatingMotionListener {
     windowManager.updateViewLayout(bubble, bubble.getViewParams());
   }
 
-  private boolean checkIfBubbleIsOverTrash(FloatingLayout bubble) {
+  private boolean checkIfBubbleIsOverTrash(FlyingLayout bubble) {
     boolean result = false;
     if (trashView.getVisibility() == View.VISIBLE) {
       View trashContentView = getTrashContent();
@@ -95,7 +95,7 @@ public final class FloatablesPresenter implements FloatingMotionListener {
     return result;
   }
 
-  public void onDraggableMotionUp(FloatingLayout bubble) {
+  public void onDraggableMotionUp(FlyingLayout bubble) {
     if (trashView != null) {
       if (checkIfBubbleIsOverTrash(bubble)) {
         removeBubble(bubble);
@@ -112,12 +112,12 @@ public final class FloatablesPresenter implements FloatingMotionListener {
     return trashView.getChildAt(0);
   }
 
-  private void recycleBubble(final FloatingLayout bubble) {
+  private void recycleBubble(final FlyingLayout bubble) {
     new Handler(Looper.getMainLooper()).post(new Runnable() {
       @Override
       public void run() {
         getWindowManager().removeView(bubble);
-        for (FloatingLayout cachedBubble : bubbles) {
+        for (FlyingLayout cachedBubble : bubbles) {
           if (cachedBubble == bubble) {
             bubble.notifyBubbleRemoved();
             bubbles.remove(cachedBubble);
@@ -135,10 +135,10 @@ public final class FloatablesPresenter implements FloatingMotionListener {
     return windowManager;
   }
 
-  public void addFloatable(FloatingLayout bubble, int x, int y) {
+  public void addFlyier(FlyingLayout bubble, int x, int y) {
     WindowManager.LayoutParams layoutParams = buildLayoutParamsForBubble(x, y);
     bubble.setViewParams(layoutParams);
-    bubble.setFloatingMotionListener(this);
+    bubble.setAirTrafficControl(this);
     bubbles.add(bubble);
     addViewToWindow(bubble, bubble.getViewParams());
   }
@@ -184,7 +184,7 @@ public final class FloatablesPresenter implements FloatingMotionListener {
     return params;
   }
 
-  public void removeBubble(FloatingLayout bubble) {
+  public void removeBubble(FlyingLayout bubble) {
     recycleBubble(bubble);
   }
 }
