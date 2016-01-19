@@ -129,6 +129,9 @@ public final class FlyingLayout extends FrameLayout {
           lastTouchDown = System.currentTimeMillis();
           updateSize();
           animator.stop();
+          if (airTrafficControl != null) {
+            airTrafficControl.onTouched(this, (int) event.getRawX(), (int) event.getRawX());
+          }
           break;
         case MotionEvent.ACTION_MOVE:
           int x = initialX + (int) (event.getRawX() - initialTouchX);
@@ -137,13 +140,13 @@ public final class FlyingLayout extends FrameLayout {
           params.y = y;
           windowManager.updateViewLayout(this, params);
           if (airTrafficControl != null) {
-            airTrafficControl.onDraggablePositionChanged(this, x, y);
+            airTrafficControl.onFlyingPositionChanged(this, x, y);
           }
           break;
         case MotionEvent.ACTION_UP:
           goToWall();
           if (airTrafficControl != null) {
-            airTrafficControl.onDraggableMotionUp(this);
+            airTrafficControl.onRelease(this);
             playAnimationClickUp();
           }
           if (System.currentTimeMillis() - lastTouchDown < TOUCH_TIME_THRESHOLD) {

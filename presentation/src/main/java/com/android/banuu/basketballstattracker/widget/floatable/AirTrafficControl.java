@@ -1,6 +1,9 @@
 package com.android.banuu.basketballstattracker.widget.floatable;
 
 public interface AirTrafficControl {
-  void onDraggablePositionChanged(FlyingLayout bubble, int x, int y);
-  void onDraggableMotionUp(FlyingLayout bubble);
+  void onTouched(FlyingLayout flier, int x, int y);
+
+  void onFlyingPositionChanged(FlyingLayout flier, int x, int y);
+
+  void onRelease(FlyingLayout flier);
 }

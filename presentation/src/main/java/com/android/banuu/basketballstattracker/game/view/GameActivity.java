@@ -46,12 +46,12 @@ public class GameActivity extends AppCompatActivity {
     });
   }
 
-  @Override
-  public void onWindowFocusChanged(boolean hasFocus) {
-    super.onWindowFocusChanged(hasFocus);
-
-    gameFragment.onWindowFocusChanged(hasFocus);
-  }
+  //@Override
+  //public void onWindowFocusChanged(boolean hasFocus) {
+  //  super.onWindowFocusChanged(hasFocus);
+  //
+  //  gameFragment.onWindowFocusChanged(hasFocus);
+  //}
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {

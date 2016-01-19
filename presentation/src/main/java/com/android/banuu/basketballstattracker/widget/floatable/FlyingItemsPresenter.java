@@ -46,7 +46,13 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
     context = contextParam;
   }
 
-  public void onDraggablePositionChanged(FlyingLayout bubble, int x, int y) {
+  @Override
+  public void onTouched(FlyingLayout flier, int x, int y) {
+    // nothing so far
+  }
+
+  @Override
+  public void onFlyingPositionChanged(FlyingLayout bubble, int x, int y) {
     if (trashView != null) {
       trashView.setVisibility(View.VISIBLE);
       if (checkIfBubbleIsOverTrash(bubble)) {
@@ -95,7 +101,7 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
     return result;
   }
 
-  public void onDraggableMotionUp(FlyingLayout bubble) {
+  public void onRelease(FlyingLayout bubble) {
     if (trashView != null) {
       if (checkIfBubbleIsOverTrash(bubble)) {
         removeBubble(bubble);
@@ -135,12 +141,13 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
     return windowManager;
   }
 
-  public void addFlyier(FlyingLayout bubble, int x, int y) {
+  public void addFlyier(FlyingLayout flier, int x, int y) {
     WindowManager.LayoutParams layoutParams = buildLayoutParamsForBubble(x, y);
-    bubble.setViewParams(layoutParams);
-    bubble.setAirTrafficControl(this);
-    bubbles.add(bubble);
-    addViewToWindow(bubble, bubble.getViewParams());
+    flier.setViewParams(layoutParams);
+    flier.setShouldStickToWall(false);
+    flier.setAirTrafficControl(this);
+    bubbles.add(flier);
+    addViewToWindow(flier, flier.getViewParams());
   }
 
   void setLanding(int trashLayoutResourceId) {
