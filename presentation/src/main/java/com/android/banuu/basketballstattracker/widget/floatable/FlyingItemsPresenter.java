@@ -168,7 +168,7 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
     });
   }
 
-  private WindowManager.LayoutParams buildLayoutParamsForBubble(int x, int y) {
+  public static WindowManager.LayoutParams buildLayoutParamsForBubble(int x, int y) {
     WindowManager.LayoutParams params =
         new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.TYPE_PHONE,

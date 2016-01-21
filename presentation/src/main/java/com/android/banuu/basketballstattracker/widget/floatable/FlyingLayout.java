@@ -80,7 +80,7 @@ public final class FlyingLayout extends FrameLayout {
     setClickable(true);
   }
 
-  void setViewParams(WindowManager.LayoutParams params) {
+  public void setViewParams(WindowManager.LayoutParams params) {
     this.params = params;
   }
 
