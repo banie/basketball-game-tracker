@@ -5,73 +5,97 @@
   android:gravity="center">
 
   <include
-    android:id="@+id/fga_stat"
+    android:id="@+id/stat1"
     layout="@layout/stat"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp" />
-
-  <include
-    android:id="@+id/fgm_stat"
-    layout="@layout/stat"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_gravity="center"
     android:layout_margin="10dp"
-    android:layout_toEndOf="@id/fga_stat"
-    android:layout_toRightOf="@id/fga_stat" />
+    android:gravity="center"
+    android:visibility="invisible" />
 
   <include
-    android:id="@+id/o_stat"
+    android:id="@+id/stat2"
     layout="@layout/stat"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_below="@id/fga_stat"
-    android:layout_margin="10dp" />
-
-  <include
-    android:id="@+id/d_stat"
-    layout="@layout/stat"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/fgm_stat"
+    android:layout_gravity="center"
     android:layout_margin="10dp"
-    android:layout_toEndOf="@id/o_stat"
-    android:layout_toRightOf="@id/o_stat" />
+    android:layout_toEndOf="@id/stat1"
+    android:layout_toRightOf="@id/stat1"
+    android:gravity="center"
+    android:visibility="invisible" />
 
   <include
-    android:id="@+id/a_stat"
+    android:id="@+id/stat3"
     layout="@layout/stat"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_below="@id/o_stat"
-    android:layout_margin="10dp" />
-
-  <include
-    android:id="@+id/s_stat"
-    layout="@layout/stat"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/d_stat"
+    android:layout_below="@id/stat1"
+    android:layout_gravity="center"
     android:layout_margin="10dp"
-    android:layout_toEndOf="@id/a_stat"
-    android:layout_toRightOf="@id/a_stat" />
+    android:gravity="center"
+    android:visibility="invisible" />
 
   <include
-    android:id="@+id/b_stat"
+    android:id="@+id/stat4"
     layout="@layout/stat"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_below="@id/a_stat"
-    android:layout_margin="10dp" />
-
-  <include
-    android:id="@+id/t_stat"
-    layout="@layout/stat"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/s_stat"
+    android:layout_below="@id/stat2"
+    android:layout_gravity="center"
     android:layout_margin="10dp"
-    android:layout_toEndOf="@id/b_stat"
-    android:layout_toRightOf="@id/b_stat" />
+    android:layout_toEndOf="@id/stat3"
+    android:layout_toRightOf="@id/stat3"
+    android:gravity="center"
+    android:visibility="invisible" />
+
+  <include
+    android:id="@+id/stat5"
+    layout="@layout/stat"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/stat3"
+    android:layout_gravity="center"
+    android:layout_margin="10dp"
+    android:gravity="center"
+    android:visibility="invisible" />
+
+  <include
+    android:id="@+id/stat6"
+    layout="@layout/stat"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/stat4"
+    android:layout_gravity="center"
+    android:layout_margin="10dp"
+    android:layout_toEndOf="@id/stat5"
+    android:layout_toRightOf="@id/stat5"
+    android:gravity="center"
+    android:visibility="invisible" />
+
+  <include
+    android:id="@+id/stat7"
+    layout="@layout/stat"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/stat5"
+    android:layout_gravity="center"
+    android:layout_margin="10dp"
+    android:gravity="center"
+    android:visibility="invisible" />
+
+  <include
+    android:id="@+id/stat8"
+    layout="@layout/stat"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/stat6"
+    android:layout_gravity="center"
+    android:layout_margin="10dp"
+    android:layout_toEndOf="@id/stat7"
+    android:layout_toRightOf="@id/stat7"
+    android:gravity="center"
+    android:visibility="invisible" />
 
 </RelativeLayout>

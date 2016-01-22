@@ -104,7 +104,7 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
   public void onRelease(FlyingLayout bubble) {
     if (trashView != null) {
       if (checkIfBubbleIsOverTrash(bubble)) {
-        removeBubble(bubble);
+        removeFlyier(bubble);
       }
       trashView.setVisibility(View.GONE);
     }
@@ -191,7 +191,7 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
     return params;
   }
 
-  public void removeBubble(FlyingLayout bubble) {
+  public void removeFlyier(FlyingLayout bubble) {
     recycleBubble(bubble);
   }
 }
