@@ -38,7 +38,7 @@ import java.util.List;
 public final class FlyingItemsPresenter implements AirTrafficControl {
   private Context context;
   private LandingLayout trashView;
-  private List<FlyingLayout> bubbles = new ArrayList<>();
+  private List<FlyingLayout> fliers = new ArrayList<>();
   private LandingLayout bubblesTrash;
   private WindowManager windowManager;
 
@@ -101,12 +101,14 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
     return result;
   }
 
-  public void onRelease(FlyingLayout bubble) {
+  public void onRelease(FlyingLayout flier) {
     if (trashView != null) {
-      if (checkIfBubbleIsOverTrash(bubble)) {
-        removeFlyier(bubble);
+      if (checkIfBubbleIsOverTrash(flier)) {
+        removeFlyier(flier);
       }
       trashView.setVisibility(View.GONE);
+    } else {
+      flier.goBackToOrigin();
     }
   }
 
@@ -123,10 +125,10 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
       @Override
       public void run() {
         getWindowManager().removeView(bubble);
-        for (FlyingLayout cachedBubble : bubbles) {
+        for (FlyingLayout cachedBubble : fliers) {
           if (cachedBubble == bubble) {
             bubble.notifyBubbleRemoved();
-            bubbles.remove(cachedBubble);
+            fliers.remove(cachedBubble);
             break;
           }
         }
@@ -146,7 +148,7 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
     flier.setViewParams(layoutParams);
     flier.setShouldStickToWall(false);
     flier.setAirTrafficControl(this);
-    bubbles.add(flier);
+    fliers.add(flier);
     addViewToWindow(flier, flier.getViewParams());
   }
 
