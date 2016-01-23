@@ -33,8 +33,26 @@ public class GameFragment extends Fragment implements IOnFocusListenable {
   @Bind(R.id.stat8)
   TextView stat8;
 
+  @Bind(R.id.landing1)
+  ViewGroup landing1;
+  @Bind(R.id.landing2)
+  ViewGroup landing2;
+  @Bind(R.id.landing3)
+  ViewGroup landing3;
+  @Bind(R.id.landing4)
+  ViewGroup landing4;
+  @Bind(R.id.landing5)
+  ViewGroup landing5;
+  @Bind(R.id.landing6)
+  ViewGroup landing6;
+  @Bind(R.id.landing7)
+  ViewGroup landing7;
+  @Bind(R.id.landing8)
+  ViewGroup landing8;
+
   private FlyingItemsPresenter flyingItemsPresenter;
   private ArrayList<Pair<View, FlyingLayout>> statFlierPairs;
+  private ArrayList<ViewGroup> landingViews;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,9 +61,11 @@ public class GameFragment extends Fragment implements IOnFocusListenable {
     ButterKnife.bind(this, view);
     flyingItemsPresenter = new FlyingItemsPresenter(getActivity());
     statFlierPairs = new ArrayList<>();
+    landingViews = new ArrayList<>();
 
     populateFlyiers(statFlierPairs);
     bindFliers(statFlierPairs);
+    populateLandings(landingViews);
 
     return view;
   }
@@ -89,17 +109,36 @@ public class GameFragment extends Fragment implements IOnFocusListenable {
     stat8.setText(R.string.F);
   }
 
+  private void populateLandings(ArrayList<ViewGroup> landingViewParams) {
+    landingViews.add(landing1);
+    landingViews.add(landing2);
+    landingViews.add(landing3);
+    landingViews.add(landing4);
+    landingViews.add(landing5);
+    landingViews.add(landing6);
+    landingViews.add(landing7);
+    landingViews.add(landing8);
+  }
+
   @Override
   public void onWindowFocusChanged(boolean hasFocus) {
     if(hasFocus) {
       int[] location = new int[2];
       int locationX;
       int locationY;
+
       for (Pair<View, FlyingLayout> statFlyier : statFlierPairs) {
         statFlyier.first.getLocationOnScreen(location);
         locationX = location[0];
         locationY = location[1] - (statFlyier.first.getHeight() / 2);
         flyingItemsPresenter.addFlyier(statFlyier.second, locationX, locationY);
+      }
+
+      for(ViewGroup landingView : landingViews) {
+        landingView.getLocationOnScreen(location);
+        locationX = location[0];
+        locationY = location[1] - (landingView.getHeight() / 2);
+        flyingItemsPresenter.addDestination(locationX, locationY);
       }
     } else {
       for (Pair<View, FlyingLayout> statFlyier : statFlierPairs) {

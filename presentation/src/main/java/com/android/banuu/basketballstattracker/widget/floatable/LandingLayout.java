@@ -29,6 +29,7 @@ import android.animation.AnimatorSet;
 import android.content.Context;
 import android.os.Vibrator;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.FrameLayout;
 import com.android.banuu.basketballstattracker.R;
 
@@ -73,6 +74,10 @@ final class LandingLayout extends FrameLayout {
       }
     }
     super.setVisibility(visibility);
+  }
+
+  public View getRunway() {
+    return getChildAt(0);
   }
 
   void applyMagnetism() {

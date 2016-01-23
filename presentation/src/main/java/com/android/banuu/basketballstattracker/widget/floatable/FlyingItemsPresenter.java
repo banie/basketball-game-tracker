@@ -32,18 +32,20 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import com.android.banuu.basketballstattracker.R;
 import java.util.ArrayList;
 import java.util.List;
 
 public final class FlyingItemsPresenter implements AirTrafficControl {
   private Context context;
-  private LandingLayout trashView;
-  private List<FlyingLayout> bubbles = new ArrayList<>();
-  private LandingLayout bubblesTrash;
+  private List<FlyingLayout> fliers;
+  private List<LandingLayout> landings;
   private WindowManager windowManager;
 
   public FlyingItemsPresenter(Context contextParam) {
     context = contextParam;
+    fliers = new ArrayList<>();
+    landings = new ArrayList<>();
   }
 
   @Override
@@ -53,44 +55,55 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
 
   @Override
   public void onFlyingPositionChanged(FlyingLayout bubble, int x, int y) {
-    if (trashView != null) {
-      trashView.setVisibility(View.VISIBLE);
-      if (checkIfBubbleIsOverTrash(bubble)) {
-        trashView.applyMagnetism();
-        trashView.vibrate();
-        applyTrashMagnetismToBubble(bubble);
+    for (LandingLayout landing : landings) {
+      landing.setVisibility(View.VISIBLE);
+      if (checkIfFlyierIsOnLanding(bubble)) {
+        landing.applyMagnetism();
+        landing.vibrate();
+        landFlyierDownRunway(bubble, landing);
       } else {
-        trashView.releaseMagnetism();
+        landing.releaseMagnetism();
       }
     }
   }
 
-  private void applyTrashMagnetismToBubble(FlyingLayout bubble) {
-    View trashContentView = getTrashContent();
-    int trashCenterX = (trashContentView.getLeft() + (trashContentView.getMeasuredWidth() / 2));
-    int trashCenterY = (trashContentView.getTop() + (trashContentView.getMeasuredHeight() / 2));
-    int x = (trashCenterX - (bubble.getMeasuredWidth() / 2));
-    int y = (trashCenterY - (bubble.getMeasuredHeight() / 2));
-    bubble.getViewParams().x = x;
-    bubble.getViewParams().y = y;
-    windowManager.updateViewLayout(bubble, bubble.getViewParams());
+  private void landFlyierDownRunway(FlyingLayout flier, LandingLayout landing) {
+    View runway = landing.getRunway();
+    int trashCenterX = (runway.getLeft() + (runway.getMeasuredWidth() / 2));
+    int trashCenterY = (runway.getTop() + (runway.getMeasuredHeight() / 2));
+    int x = (trashCenterX - (flier.getMeasuredWidth() / 2));
+    int y = (trashCenterY - (flier.getMeasuredHeight() / 2));
+    flier.getViewParams().x = x;
+    flier.getViewParams().y = y;
+    windowManager.updateViewLayout(flier, flier.getViewParams());
   }
 
-  private boolean checkIfBubbleIsOverTrash(FlyingLayout bubble) {
+  private boolean checkIfFlyierIsOnLanding(FlyingLayout flier) {
     boolean result = false;
-    if (trashView.getVisibility() == View.VISIBLE) {
-      View trashContentView = getTrashContent();
-      int trashWidth = trashContentView.getMeasuredWidth();
-      int trashHeight = trashContentView.getMeasuredHeight();
-      int trashLeft = (trashContentView.getLeft() - (trashWidth / 2));
-      int trashRight = (trashContentView.getLeft() + trashWidth + (trashWidth / 2));
-      int trashTop = (trashContentView.getTop() - (trashHeight / 2));
-      int trashBottom = (trashContentView.getTop() + trashHeight + (trashHeight / 2));
-      int bubbleWidth = bubble.getMeasuredWidth();
-      int bubbleHeight = bubble.getMeasuredHeight();
-      int bubbleLeft = bubble.getViewParams().x;
+    for (LandingLayout landing : landings) {
+      if (checkIfFlyierIsOnLanding(flier, landing)) {
+        result = true;
+        break;
+      }
+    }
+    return result;
+  }
+
+  private boolean checkIfFlyierIsOnLanding(FlyingLayout flier, LandingLayout landing) {
+    boolean result = false;
+    if (landing.getVisibility() == View.VISIBLE) {
+      View runway = landing.getRunway();
+      int trashWidth = runway.getMeasuredWidth();
+      int trashHeight = runway.getMeasuredHeight();
+      int trashLeft = (runway.getLeft() - (trashWidth / 2));
+      int trashRight = (runway.getLeft() + trashWidth + (trashWidth / 2));
+      int trashTop = (runway.getTop() - (trashHeight / 2));
+      int trashBottom = (runway.getTop() + trashHeight + (trashHeight / 2));
+      int bubbleWidth = flier.getMeasuredWidth();
+      int bubbleHeight = flier.getMeasuredHeight();
+      int bubbleLeft = flier.getViewParams().x;
       int bubbleRight = bubbleLeft + bubbleWidth;
-      int bubbleTop = bubble.getViewParams().y;
+      int bubbleTop = flier.getViewParams().y;
       int bubbleBottom = bubbleTop + bubbleHeight;
       if (bubbleLeft >= trashLeft && bubbleRight <= trashRight) {
         if (bubbleTop >= trashTop && bubbleBottom <= trashBottom) {
@@ -101,21 +114,24 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
     return result;
   }
 
-  public void onRelease(FlyingLayout bubble) {
-    if (trashView != null) {
-      if (checkIfBubbleIsOverTrash(bubble)) {
-        removeFlyier(bubble);
-      }
-      trashView.setVisibility(View.GONE);
+  public void onRelease(FlyingLayout flier) {
+    //if (trashView != null) {
+    //  if (checkIfFlyierIsOnLanding(flier)) {
+    //    removeFlyier(flier);
+    //  }
+    //  trashView.setVisibility(View.GONE);
+    //} else {
+    //  flier.goBackToOrigin();
+    //}
+
+    if (checkIfFlyierIsOnLanding(flier)) {
+      removeFlyier(flier);
+    } else {
+      flier.goBackToOrigin();
     }
-  }
-
-  public void setTrashView(LandingLayout trashViewParam) {
-    trashView = trashViewParam;
-  }
-
-  private View getTrashContent() {
-    return trashView.getChildAt(0);
+    for (LandingLayout landing : landings) {
+      landing.setVisibility(View.GONE);
+    }
   }
 
   private void recycleBubble(final FlyingLayout bubble) {
@@ -123,10 +139,10 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
       @Override
       public void run() {
         getWindowManager().removeView(bubble);
-        for (FlyingLayout cachedBubble : bubbles) {
+        for (FlyingLayout cachedBubble : fliers) {
           if (cachedBubble == bubble) {
             bubble.notifyBubbleRemoved();
-            bubbles.remove(cachedBubble);
+            fliers.remove(cachedBubble);
             break;
           }
         }
@@ -146,17 +162,16 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
     flier.setViewParams(layoutParams);
     flier.setShouldStickToWall(false);
     flier.setAirTrafficControl(this);
-    bubbles.add(flier);
+    fliers.add(flier);
     addViewToWindow(flier, flier.getViewParams());
   }
 
-  void setLanding(int trashLayoutResourceId) {
-    if (trashLayoutResourceId != 0) {
-      bubblesTrash = new LandingLayout(context);
-      bubblesTrash.setVisibility(View.GONE);
-      LayoutInflater.from(context).inflate(trashLayoutResourceId, bubblesTrash, true);
-      addViewToWindow(bubblesTrash, buildLayoutParamsForTrash());
-    }
+  public void addDestination(int x, int y) {
+    LandingLayout landing = new LandingLayout(context);
+    landing.setVisibility(View.GONE);
+    LayoutInflater.from(context).inflate(R.layout.bubble_trash_layout, landing, true);
+    addViewToWindow(landing, buildLayoutParamsForTrash(x, y));
+    landings.add(landing);
   }
 
   private void addViewToWindow(final View view, final WindowManager.LayoutParams params) {
@@ -179,19 +194,18 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
     return params;
   }
 
-  private WindowManager.LayoutParams buildLayoutParamsForTrash() {
-    int x = 0;
-    int y = 0;
+  private WindowManager.LayoutParams buildLayoutParamsForTrash(int x, int y) {
     WindowManager.LayoutParams params =
-        new WindowManager.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
+        new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT,
+            WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, PixelFormat.TRANSPARENT);
+    params.gravity = Gravity.TOP | Gravity.START;
     params.x = x;
     params.y = y;
     return params;
   }
 
-  public void removeFlyier(FlyingLayout bubble) {
-    recycleBubble(bubble);
+  public void removeFlyier(FlyingLayout flier) {
+    recycleBubble(flier);
   }
 }

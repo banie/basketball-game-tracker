@@ -39,7 +39,10 @@ import android.widget.FrameLayout;
 import com.android.banuu.basketballstattracker.R;
 
 public final class FlyingLayout extends FrameLayout {
-  private WindowManager.LayoutParams params;
+
+  private WindowManager.LayoutParams originParams;
+  private WindowManager.LayoutParams flyingParams;
+
   private WindowManager windowManager;
 
   private float initialTouchX;
@@ -57,35 +60,33 @@ public final class FlyingLayout extends FrameLayout {
 
   public FlyingLayout(Context context) {
     super(context);
-    animator = new MoveAnimator();
-    windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-    initializeView();
+    initializeView(context);
   }
 
   public FlyingLayout(Context context, AttributeSet attrs) {
     super(context, attrs);
-    animator = new MoveAnimator();
-    windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-    initializeView();
+    initializeView(context);
   }
 
   public FlyingLayout(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    animator = new MoveAnimator();
-    windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-    initializeView();
+    initializeView(context);
   }
 
-  private void initializeView() {
+  private void initializeView(Context context) {
+    animator = new MoveAnimator();
+    windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+    originParams = new WindowManager.LayoutParams();
     setClickable(true);
   }
 
   public void setViewParams(WindowManager.LayoutParams params) {
-    this.params = params;
+    originParams.copyFrom(params);
+    flyingParams = params;
   }
 
   WindowManager.LayoutParams getViewParams() {
-    return this.params;
+    return this.flyingParams;
   }
 
   public void setAirTrafficControl(AirTrafficControl listener) {
@@ -121,8 +122,8 @@ public final class FlyingLayout extends FrameLayout {
     if (event != null) {
       switch (event.getAction()) {
         case MotionEvent.ACTION_DOWN:
-          initialX = params.x;
-          initialY = params.y;
+          initialX = flyingParams.x;
+          initialY = flyingParams.y;
           initialTouchX = event.getRawX();
           initialTouchY = event.getRawY();
           playAnimationClickDown();
@@ -136,9 +137,9 @@ public final class FlyingLayout extends FrameLayout {
         case MotionEvent.ACTION_MOVE:
           int x = initialX + (int) (event.getRawX() - initialTouchX);
           int y = initialY + (int) (event.getRawY() - initialTouchY);
-          params.x = x;
-          params.y = y;
-          windowManager.updateViewLayout(this, params);
+          flyingParams.x = x;
+          flyingParams.y = y;
+          windowManager.updateViewLayout(this, flyingParams);
           if (airTrafficControl != null) {
             airTrafficControl.onFlyingPositionChanged(this, x, y);
           }
@@ -207,15 +208,19 @@ public final class FlyingLayout extends FrameLayout {
   public void goToWall() {
     if (shouldStickToWall) {
       int middle = width / 2;
-      float nearestXWall = params.x >= middle ? width : 0;
-      animator.start(nearestXWall, params.y);
+      float nearestXWall = flyingParams.x >= middle ? width : 0;
+      animator.start(nearestXWall, flyingParams.y);
     }
   }
 
+  public void goBackToOrigin() {
+    animator.start(originParams.x, originParams.y);
+  }
+
   private void move(float deltaX, float deltaY) {
-    params.x += deltaX;
-    params.y += deltaY;
-    windowManager.updateViewLayout(this, params);
+    flyingParams.x += deltaX;
+    flyingParams.y += deltaY;
+    windowManager.updateViewLayout(this, flyingParams);
   }
 
   private class MoveAnimator implements Runnable {
@@ -235,8 +240,8 @@ public final class FlyingLayout extends FrameLayout {
     public void run() {
       if (getRootView() != null && getRootView().getParent() != null) {
         float progress = Math.min(1, (System.currentTimeMillis() - startingTime) / 400f);
-        float deltaX = (destinationX - params.x) * progress;
-        float deltaY = (destinationY - params.y) * progress;
+        float deltaX = (destinationX - flyingParams.x) * progress;
+        float deltaY = (destinationY - flyingParams.y) * progress;
         move(deltaX, deltaY);
         if (progress < 1) {
           handler.post(this);

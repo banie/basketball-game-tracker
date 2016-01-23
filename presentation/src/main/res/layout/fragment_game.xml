@@ -13,24 +13,28 @@
     android:orientation="vertical">
 
     <include
+      android:id="@+id/landing1"
       layout="@layout/basket_with_name"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginBottom="20dp" />
 
     <include
+      android:id="@+id/landing2"
       layout="@layout/basket_with_name"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginBottom="20dp" />
 
     <include
+      android:id="@+id/landing3"
       layout="@layout/basket_with_name"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginBottom="20dp" />
 
     <include
+      android:id="@+id/landing4"
       layout="@layout/basket_with_name"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -61,24 +65,28 @@
     android:orientation="vertical">
 
     <include
+      android:id="@+id/landing5"
       layout="@layout/basket_with_name"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginBottom="20dp" />
 
     <include
+      android:id="@+id/landing6"
       layout="@layout/basket_with_name"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginBottom="20dp" />
 
     <include
+      android:id="@+id/landing7"
       layout="@layout/basket_with_name"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginBottom="20dp" />
 
     <include
+      android:id="@+id/landing8"
       layout="@layout/basket_with_name"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
