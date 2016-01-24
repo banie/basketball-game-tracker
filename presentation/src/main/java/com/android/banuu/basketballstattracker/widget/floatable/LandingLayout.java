@@ -30,11 +30,13 @@ import android.content.Context;
 import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import com.android.banuu.basketballstattracker.R;
 
 final class LandingLayout extends FrameLayout {
   public static final int VIBRATION_DURATION_IN_MS = 70;
+  private WindowManager.LayoutParams originParams;
   private boolean magnetismApplied = false;
   private boolean attachedToWindow = false;
 
@@ -78,6 +80,14 @@ final class LandingLayout extends FrameLayout {
 
   public View getRunway() {
     return getChildAt(0);
+  }
+
+  public void setOriginParams(WindowManager.LayoutParams params) {
+    originParams = params;
+  }
+
+  public WindowManager.LayoutParams getOriginParams() {
+    return originParams;
   }
 
   void applyMagnetism() {

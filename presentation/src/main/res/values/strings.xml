@@ -35,6 +35,6 @@
   <string name="S">S</string>
   <string name="TO">TO</string>
   <string name="title_activity_game">GameActivity</string>
-  <string name="section_format">Hello World from section: %1$d</string>
+  <string name="flyier_landed">Flier has landed</string>
 
 </resources>

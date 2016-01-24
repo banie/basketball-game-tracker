@@ -32,6 +32,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 import com.android.banuu.basketballstattracker.R;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,17 +51,19 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
 
   @Override
   public void onTouched(FlyingLayout flier, int x, int y) {
-    // nothing so far
+    for (LandingLayout landing : landings) {
+      landing.setVisibility(View.VISIBLE);
+    }
   }
 
   @Override
   public void onFlyingPositionChanged(FlyingLayout bubble, int x, int y) {
     for (LandingLayout landing : landings) {
-      landing.setVisibility(View.VISIBLE);
-      if (checkIfFlyierIsOnLanding(bubble)) {
+      if (checkIfFlyierIsOnLanding(bubble, landing)) {
         landing.applyMagnetism();
         landing.vibrate();
         landFlyierDownRunway(bubble, landing);
+        break;
       } else {
         landing.releaseMagnetism();
       }
@@ -69,10 +72,10 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
 
   private void landFlyierDownRunway(FlyingLayout flier, LandingLayout landing) {
     View runway = landing.getRunway();
-    int trashCenterX = (runway.getLeft() + (runway.getMeasuredWidth() / 2));
-    int trashCenterY = (runway.getTop() + (runway.getMeasuredHeight() / 2));
-    int x = (trashCenterX - (flier.getMeasuredWidth() / 2));
-    int y = (trashCenterY - (flier.getMeasuredHeight() / 2));
+    int runwayCenterX = (landing.getOriginParams().x + (runway.getRight() / 2));
+    int runwayCenterY = (landing.getOriginParams().y + (runway.getBottom() / 2));
+    int x = (runwayCenterX - (flier.getMeasuredWidth() / 2));
+    int y = (runwayCenterY - (flier.getMeasuredHeight() / 2));
     flier.getViewParams().x = x;
     flier.getViewParams().y = y;
     windowManager.updateViewLayout(flier, flier.getViewParams());
@@ -93,20 +96,18 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
     boolean result = false;
     if (landing.getVisibility() == View.VISIBLE) {
       View runway = landing.getRunway();
-      int trashWidth = runway.getMeasuredWidth();
-      int trashHeight = runway.getMeasuredHeight();
-      int trashLeft = (runway.getLeft() - (trashWidth / 2));
-      int trashRight = (runway.getLeft() + trashWidth + (trashWidth / 2));
-      int trashTop = (runway.getTop() - (trashHeight / 2));
-      int trashBottom = (runway.getTop() + trashHeight + (trashHeight / 2));
-      int bubbleWidth = flier.getMeasuredWidth();
-      int bubbleHeight = flier.getMeasuredHeight();
-      int bubbleLeft = flier.getViewParams().x;
-      int bubbleRight = bubbleLeft + bubbleWidth;
-      int bubbleTop = flier.getViewParams().y;
-      int bubbleBottom = bubbleTop + bubbleHeight;
-      if (bubbleLeft >= trashLeft && bubbleRight <= trashRight) {
-        if (bubbleTop >= trashTop && bubbleBottom <= trashBottom) {
+      int runwayLeft = landing.getOriginParams().x;
+      int runwayRight = runwayLeft + runway.getRight();
+      int runwayTop = landing.getOriginParams().y;
+      int runwayBottom = runwayTop + runway.getBottom();
+      int flierWidth = flier.getMeasuredWidth();
+      int flierHeight = flier.getMeasuredHeight();
+      int flierLeft = flier.getViewParams().x;
+      int flierRight = flierLeft + flierWidth;
+      int flierTop = flier.getViewParams().y;
+      int flierBottom = flierTop + flierHeight;
+      if (flierLeft >= runwayLeft && flierRight <= runwayRight) {
+        if (flierTop >= runwayTop && flierBottom <= runwayBottom) {
           result = true;
         }
       }
@@ -116,7 +117,9 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
 
   public void onRelease(FlyingLayout flier) {
     if (checkIfFlyierIsOnLanding(flier)) {
-      removeFlyier(flier);
+      flier.goBackToOrigin();
+      Toast toast = Toast.makeText(context, R.string.flyier_landed, Toast.LENGTH_LONG);
+      toast.show();
     } else {
       flier.goBackToOrigin();
     }
@@ -159,10 +162,12 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
   }
 
   public void addDestination(int x, int y) {
+    WindowManager.LayoutParams layoutParams = buildLayoutParamsForTrash(x, y);
     LandingLayout landing = new LandingLayout(context);
+    landing.setOriginParams(layoutParams);
     landing.setVisibility(View.GONE);
     LayoutInflater.from(context).inflate(R.layout.bubble_trash_layout, landing, true);
-    addViewToWindow(landing, buildLayoutParamsForTrash(x, y));
+    addViewToWindow(landing, layoutParams);
     landings.add(landing);
   }
 

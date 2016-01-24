@@ -42,9 +42,7 @@ public final class FlyingLayout extends FrameLayout {
 
   private WindowManager.LayoutParams originParams;
   private WindowManager.LayoutParams flyingParams;
-
   private WindowManager windowManager;
-
   private float initialTouchX;
   private float initialTouchY;
   private int initialX;
