@@ -115,20 +115,12 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
   }
 
   public void onRelease(FlyingLayout flier) {
-    //if (trashView != null) {
-    //  if (checkIfFlyierIsOnLanding(flier)) {
-    //    removeFlyier(flier);
-    //  }
-    //  trashView.setVisibility(View.GONE);
-    //} else {
-    //  flier.goBackToOrigin();
-    //}
-
     if (checkIfFlyierIsOnLanding(flier)) {
       removeFlyier(flier);
     } else {
       flier.goBackToOrigin();
     }
+
     for (LandingLayout landing : landings) {
       landing.setVisibility(View.GONE);
     }
