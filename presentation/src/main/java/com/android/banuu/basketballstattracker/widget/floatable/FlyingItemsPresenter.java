@@ -129,21 +129,29 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
     }
   }
 
-  private void recycleBubble(final FlyingLayout bubble) {
+  private void recycleBubble(final FlyingLayout flier) {
     new Handler(Looper.getMainLooper()).post(new Runnable() {
       @Override
       public void run() {
-        getWindowManager().removeView(bubble);
-        for (FlyingLayout cachedBubble : fliers) {
-          if (cachedBubble == bubble) {
-            bubble.notifyBubbleRemoved();
-            fliers.remove(cachedBubble);
-            break;
-          }
-        }
+        getWindowManager().removeView(flier);
+        flier.notifyBubbleRemoved();
+        fliers.remove(flier);
       }
     });
   }
+
+  public void clearLandings() {
+    new Handler(Looper.getMainLooper()).post(new Runnable() {
+      @Override
+      public void run() {
+        for(LandingLayout landing : landings) {
+          getWindowManager().removeView(landing);
+        }
+        landings.clear();
+      }
+    });
+  }
+
 
   private WindowManager getWindowManager() {
     if (windowManager == null) {

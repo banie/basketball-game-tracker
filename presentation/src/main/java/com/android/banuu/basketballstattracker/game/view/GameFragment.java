@@ -122,7 +122,7 @@ public class GameFragment extends Fragment implements IOnFocusListenable {
 
   @Override
   public void onWindowFocusChanged(boolean hasFocus) {
-    if(hasFocus) {
+    if (hasFocus) {
       int[] location = new int[2];
       int locationX;
       int locationY;
@@ -134,7 +134,7 @@ public class GameFragment extends Fragment implements IOnFocusListenable {
         flyingItemsPresenter.addFlyier(statFlyier.second, locationX, locationY);
       }
 
-      for(ViewGroup landingView : landingViews) {
+      for (ViewGroup landingView : landingViews) {
         landingView.getLocationOnScreen(location);
         locationX = location[0];
         locationY = location[1] - (landingView.getHeight() / 2);
@@ -144,6 +144,7 @@ public class GameFragment extends Fragment implements IOnFocusListenable {
       for (Pair<View, FlyingLayout> statFlyier : statFlierPairs) {
         flyingItemsPresenter.removeFlyier(statFlyier.second);
       }
+      flyingItemsPresenter.clearLandings();
     }
   }
 }
