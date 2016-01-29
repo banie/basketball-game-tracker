@@ -96,10 +96,18 @@ public final class FlyingItemsPresenter implements AirTrafficControl {
     boolean result = false;
     if (landing.getVisibility() == View.VISIBLE) {
       View runway = landing.getRunway();
+      System.out.println("XXXX landing.getMeasuredHeight(): " + landing.getMeasuredHeight());
+      System.out.println("XXXX landing.getMeasuredWidth(): " + landing.getMeasuredWidth());
+      System.out.println("XXXX landing.getBottom(): " + landing.getBottom());
+      System.out.println("XXXX landing.getRight(): " + landing.getRight());
+      System.out.println("XXXX runway.getMeasuredHeight(): " + runway.getMeasuredHeight());
+      System.out.println("XXXX runway.getMeasuredWidth(): " + runway.getMeasuredWidth());
+      System.out.println("XXXX runway.getBottom(): " + runway.getBottom());
+      System.out.println("XXXX runway.getRight(): " + runway.getRight());
       int runwayLeft = landing.getOriginParams().x;
-      int runwayRight = runwayLeft + runway.getRight();
+      int runwayRight = runwayLeft + runway.getMeasuredWidth();
       int runwayTop = landing.getOriginParams().y;
-      int runwayBottom = runwayTop + runway.getBottom();
+      int runwayBottom = runwayTop + runway.getMeasuredHeight();
       int flierWidth = flier.getMeasuredWidth();
       int flierHeight = flier.getMeasuredHeight();
       int flierLeft = flier.getViewParams().x;

@@ -110,14 +110,14 @@ public class GameFragment extends Fragment implements IOnFocusListenable {
   }
 
   private void populateLandings(ArrayList<ViewGroup> landingViewParams) {
-    landingViews.add(landing1);
-    landingViews.add(landing2);
-    landingViews.add(landing3);
-    landingViews.add(landing4);
-    landingViews.add(landing5);
-    landingViews.add(landing6);
-    landingViews.add(landing7);
-    landingViews.add(landing8);
+    landingViewParams.add(landing1);
+    landingViewParams.add(landing2);
+    landingViewParams.add(landing3);
+    landingViewParams.add(landing4);
+    landingViewParams.add(landing5);
+    landingViewParams.add(landing6);
+    landingViewParams.add(landing7);
+    landingViewParams.add(landing8);
   }
 
   @Override
