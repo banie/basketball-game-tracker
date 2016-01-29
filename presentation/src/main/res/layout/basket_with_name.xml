@@ -5,6 +5,7 @@
   android:background="@drawable/basket_bg"
   android:gravity="center"
   android:minHeight="90dp"
+  android:elevation="2dp"
   android:orientation="vertical">
 
   <TextView

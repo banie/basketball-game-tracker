@@ -7,4 +7,5 @@
   android:gravity="center"
   android:layout_gravity="center"
   android:textColor="@color/white"
+  android:elevation="4dp"
   android:textSize="@dimen/stat_textsize" />
